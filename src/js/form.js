@@ -415,7 +415,7 @@ function manageSelectedItem (userChoice, category) {
   var newItem
   var sectionEl
   var catEl
-  var sectionName = document.querySelector('#sidebar-left .new.section--selected').parentNode.parentNode.previousSibling.firstChild.firstChild.nextSibling.innerHTML.toLowerCase()
+  var sectionName = document.querySelector('#sidebar-left .section--selected').parentNode.parentNode.previousSibling.firstChild.firstChild.nextSibling.innerHTML.toLowerCase()
   // Remove previous className
   while(counter--) {
     previousSelectedItem[counter].classList.remove('selected--item')

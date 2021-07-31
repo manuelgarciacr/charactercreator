@@ -11,7 +11,7 @@
 
 .sidebar {
     position: absolute;
-    top: 5.5vh;
+    top: 9.5vh;
     display: block;
     height: auto;
     font-family: helvetica, sans-serif;
@@ -24,7 +24,8 @@
     border:1px solid $color-border;
     width: 20vw;
     // max-height: 90%;
-
+    min-width: 85px;
+    
     @media screen and (min-width: 650px) {
         position: absolute;
         bottom: auto;
@@ -52,6 +53,9 @@
     left: 0;
     margin-left: 0;
     transform: translateX(-200%);
+    overflow: hidden;
+    max-height: 100%;
+    overflow-y: scroll;
 
     @media screen and (min-width: 650px) {
       margin-left: 3em;
@@ -61,6 +65,7 @@
 }
 
 .sidebar-right {
+    z-index: 2;
     // top: 0;
     right: 0;
     margin-right: 0;

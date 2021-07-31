@@ -45,7 +45,7 @@ sub {
     cursor: pointer;
     justify-content: center;
     align-items: center;
-    margin: 0;
+    margin: 1em 0 0;
     transition: opacity 0.7s ease, visibility 0s linear 0.7s, color 0.7s ease;
     background: $color-canvas;
     border: 1px solid $color-alpha;
@@ -83,7 +83,7 @@ sub {
 
 #horizontal {
     position: absolute;
-    top: 5.5vh;
+    top: 9.5vh;
     right: 0.5em;
     display: inline-flex;
     flex-direction: column;
@@ -95,9 +95,11 @@ sub {
     transition: transform 200ms ease-out;
     background-color: $color-white;
     border-radius: 0.2em;
-    margin: 0;
+    margin: 1em 0 0;
     border: 1px solid $color-alpha;
     box-sizing: border-box;
+    min-width: 85px;
+
     @media only screen and (min-width: 768px) {}
     @media only screen and (min-width: 992px) {
         position: inherit;

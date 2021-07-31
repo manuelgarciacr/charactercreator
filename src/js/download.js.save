@@ -1,5 +1,5 @@
 function svgTo (type, svg, filename) {
-  return fetch(`http://manuelgc.eu:3002/${type}`, {
+  return fetch(`/convert/${type}`, {
     method: "POST",
     headers: {
       "content-type": "application/json"
@@ -76,39 +76,6 @@ function getSVG () {
   return text
 }
 
-function getSVGDone () {
-  var viewBoxValue = getDownloadViewBox()
-  var header1 = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  id="character" width="560" height="560" viewBox="10 10 540 540">\n'
-  var header2 = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  id="character" width="560" height="560" viewBox="136 73 290 290">\n'
-  var header3 = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  id="character" width="560" height="560" viewBox="242.6 97 80 80">\n'
-  var text = '<defs> Copyright (c) 2014-2020 Frederic Guimont, all rights reserved \n <a href="https://creativecommons.org/licenses/by-nc/2.0/">Distributed under the Creative Commons CC-BY-NC license</a> \n Commercial license available to patrons on https://www.patreon.com/charactercreator \n You can recreate this character using this URL: <!--'+window.location.href+'--></defs> \n'
-  var svgRaw = document.getElementById('svg1').childNodes
-  var svgNodes
-  var svgString
-  var event
-
-  purgeHiddenLayers()
-
-  // This previous version of the text contains all svg files shown and hidden
-  // It will need to be filtered to keep only the layers needed for our purpose
-  if (currentUser && currentUser.cc.personnageActuel !== '') {
-    filename = currentUser.cc.personnageActuel + '.svg'
-  }
-
-  svgNodes = Array.prototype.slice.call(svgRaw)
-
-  svgNodes.forEach(function (item) {
-    // This removes only useless layers and allows us to o the next test.
-    if (item.innerHTML && (!item.style || !item.style.opacity || item.style.opacity != 0)) {
-      svgString = '<g id="' + item.id + '">' + item.innerHTML + '</g>'
-      text += svgString
-    }
-  })
-
-  text += '</svg>'
-  return [header1 + text, header2 + text, header3 + text]
-}
-
 function download (ev) {
   ev.preventDefault()
 
@@ -160,23 +127,20 @@ function downloadDone (ev) {
   // TODO make the filename the character's name if possible.
   var filename = c.choices.name || 'my_character.svg'
   var pom
-  var text = getSVGDone()
+  var text = getSVG()
   // TODO Copy the URL before it is erased by the download function.
 
-// parent.postMessage('Information from iframe','*');
-parent.postMessage({source: 'charactercreator1', payload: text}, 'http://localhost:3500');
-parent.postMessage({source: 'charactercreator2', payload: text}, 'http://manuelgc.eu');
-parent.postMessage({source: 'charactercreator3', payload: text}, 'https://manuelgc.eu');
-//  const format = document.querySelector("input[name=download-format]:checked").value
+  const format = document.querySelector("input[name=download-format]:checked").value
 
-//  if (format === "png") {
-//    filename = c.choices.name || 'my_character.png'
-//    return svgToPng(text, filename)
-//      .then(function () {
-//        caboose()
-//      })
-//  }
-
+  // if (format === "png") {
+  //   filename = c.choices.name || 'my_character.png'
+  //   return svgToPng(text, filename)
+  //     .then(function () {
+  //       caboose()
+  //     })
+  // }
+  window.postMessage('Information from iframe','*');
+  
   /*
   if (format === "pdf") {
     filename = c.choices.name || 'my_character.pdf'
@@ -187,16 +151,16 @@ parent.postMessage({source: 'charactercreator3', payload: text}, 'https://manuel
   }
   */
 
-//  pom = document.createElement('a')
-//  pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text))
-//  pom.setAttribute('download', filename)
+  pom = document.createElement('a')
+  pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text))
+  pom.setAttribute('download', filename)
 
-//  if (document.createEvent) {
-//    event = document.createEvent('MouseEvents')
-//    event.initEvent('click', true, true)
-//    pom.dispatchEvent(event)
-//  } else {
-//    pom.click()
-//  }
-//  caboose()
+  if (document.createEvent) {
+    event = document.createEvent('MouseEvents')
+    event.initEvent('click', true, true)
+    pom.dispatchEvent(event)
+  } else {
+    pom.click()
+  }
+  // caboose()
 }

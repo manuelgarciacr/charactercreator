@@ -21,7 +21,8 @@ function onAllLoaded () {
     downloadBtn.classList.add('enabled')
   }
   if (!doneBtn.classList.contains('.enabled')) {
-    doneBtn.addEventListener('click', showDoneOptions, false)
+    // doneBtn.addEventListener('click', showDoneOptions, false)
+    doneBtn.addEventListener('click', downloadDone, false)
     doneBtn.classList.add('enabled')
   }
 

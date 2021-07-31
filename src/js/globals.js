@@ -99,7 +99,7 @@ var femaleForm4 = {
   Suit: ['', 'asymetric', 'bands', 'onepiece', 'wetsuit'],
   Blouse: ['', 'cherry'],
   Dress: ['', 'accolade', 'bobafett', 'casual', 'corset', 'chinatown', /*'suit',*/ 'waitress', 'short', 'cheerleader', 'japanese_pleat', 'parisian_fall', 'german_expression', 'zig_zag', 'zip'],
-  Suit: ['', 'dress'],
+  Suit2: ['', 'dress'],
   Coat: ['', 'biker', 'lab', 'winter_furcollar', 'winter_tubecollar'],
   Armband: ['', 'bandage_left', 'bandage_right', 'egyptian_left', 'egyptian_right'],
   Bracelet: ['', 'band_right', 'band_left', 'egyptian_right', 'egyptian_left', 'ornamental_right', 'ornamental_left', 'perl_right', 'perl_left', 'rings_left', 'rings_right', 'wonder_left', 'wonder_right'],

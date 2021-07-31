@@ -32,8 +32,7 @@ fastify.post("/", (request, reply) => {
 
 
 // /convert/png
-fastify.post('/png', async (request, reply) => {
-  reply.type("image/png")
+fastify.post('/png', async (request, reply) => {  reply.type("image/png")
   return sharp(Buffer.from(request.body.svg)).png().toBuffer()
 })
 
@@ -49,7 +48,7 @@ fastify.post('/pdf', (request, reply) => {
 })
 */
 
-fastify.listen(setup.extraPort, (err, address) => {
+fastify.listen(setup.extraPort, '82.223.104.217', (err, address) => {
   if (err) {
     fastify.log.error(err)
     process.exit(1)
